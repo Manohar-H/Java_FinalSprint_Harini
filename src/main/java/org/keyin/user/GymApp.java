@@ -1,14 +1,12 @@
-package org.keyin;
+package org.keyin.user;
 
-import org.keyin.user.User;
-import org.keyin.user.UserService;
 import org.keyin.user.childclasses.Admin;
 import org.keyin.user.childclasses.Member;
 import org.keyin.user.childclasses.Trainer;
-import org.keyin.workoutclasses.WorkoutClass;
-import org.keyin.workoutclasses.WorkoutClassService;
 import org.keyin.memberships.Membership;
 import org.keyin.memberships.MembershipService;
+import org.keyin.workoutclasses.WorkoutClass;
+import org.keyin.workoutclasses.WorkoutClassService;
 
 import java.sql.SQLException;
 import java.util.Scanner;
