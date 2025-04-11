@@ -86,6 +86,11 @@ public class GymApp {
     }
 
     private static void showAdminMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService, WorkoutClassService workoutService) {
+        
+        if (user instanceof Admin) {
+            ((Admin) user).printAdminDashboard();
+        }
+
         int choice;
         do {
             System.out.println("\n--- Admin Menu ---");
@@ -123,6 +128,11 @@ public class GymApp {
     }
 
     private static void showTrainerMenu(Scanner scanner, User user, UserService userService, WorkoutClassService workoutService) {
+        
+        if (user instanceof Trainer) {
+            ((Trainer) user).printTrainerProfile();
+        }
+
         int choice;
         do {
             System.out.println("\n--- Trainer Menu ---");
@@ -163,6 +173,11 @@ public class GymApp {
     }
 
     private static void showMemberMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService) {
+
+        if (user instanceof Member) {
+            ((Member) user).printMembershipSummary();
+        }
+
         int choice;
         do {
             System.out.println("\n--- Member Menu ---");

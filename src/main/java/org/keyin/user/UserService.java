@@ -1,8 +1,5 @@
 package org.keyin.user;
 
-import org.keyin.user.childclasses.Admin;
-import org.keyin.user.childclasses.Member;
-import org.keyin.user.childclasses.Trainer;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;

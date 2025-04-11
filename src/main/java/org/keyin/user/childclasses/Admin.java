@@ -8,5 +8,8 @@ public class Admin extends User {
         super(id, username, password, email, phoneNumber, address, "Admin");
     }
 
-    // Additional admin-specific behavior can go here
+    public void printAdminDashboard() {
+        System.out.println("🛡️ Admin Dashboard Accessed");
+        System.out.println("Welcome, " + getUsername());
+    }
 }
