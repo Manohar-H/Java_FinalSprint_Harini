@@ -1,13 +1,25 @@
 package org.keyin.memberships;
 
+import java.util.List;
 
-// Service class for membership handle all the business logic
-// and only uses the DAO to interact with the database it does not have methods to do so
-// you can inject in your dao to use in your service. An example will be in the code
 public class MembershipService {
 
-    // When you inject in the DAO you have access to all methods in it
-    //MembershipDAO dao = new MembershipDAO();
+    private final MembershipDAO membershipDAO = new MembershipDAO();
 
+    public void purchaseMembership(Membership membership) {
+        membershipDAO.addMembership(membership);
+        System.out.println("✅ Membership purchased!");
+    }
 
+    public void listAllMemberships() {
+        List<Membership> memberships = membershipDAO.getAllMemberships();
+        for (Membership m : memberships) {
+            System.out.println(m);
+        }
+    }
+
+    public void showTotalRevenue() {
+        double revenue = membershipDAO.getTotalRevenue();
+        System.out.println("💰 Total revenue: $" + revenue);
+    }
 }
