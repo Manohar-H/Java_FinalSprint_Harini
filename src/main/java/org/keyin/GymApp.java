@@ -5,8 +5,9 @@ import org.keyin.user.UserService;
 import org.keyin.user.childclasses.Admin;
 import org.keyin.user.childclasses.Member;
 import org.keyin.user.childclasses.Trainer;
-
+import org.keyin.memberships.Membership;
 import org.keyin.memberships.MembershipService;
+import org.keyin.workoutclasses.WorkoutClass;
 import org.keyin.workoutclasses.WorkoutClassService;
 
 import java.sql.SQLException;
@@ -86,16 +87,133 @@ public class GymApp {
         }
     }
 
-    private static void showMemberMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService) {
-        System.out.println("Member menu under construction.");
+    private static void showAdminMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService, WorkoutClassService workoutService) {
+
+        if (user instanceof Admin) {
+            ((Admin) user).printAdminDashboard();
+        }
+
+        int choice;
+        do {
+            System.out.println("\n--- Admin Menu ---");
+            System.out.println("1. View all users");
+            System.out.println("2. Delete user");
+            System.out.println("3. View all memberships");
+            System.out.println("4. View total revenue");
+            System.out.println("0. Logout");
+            System.out.print("Choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1:
+                    userService.viewAllUsers();
+                    break;
+                case 2:
+                    System.out.print("Enter user ID to delete: ");
+                    int userId = scanner.nextInt();
+                    userService.deleteUser(userId);
+                    break;
+                case 3:
+                    membershipService.listAllMemberships();
+                    break;
+                case 4:
+                    membershipService.showTotalRevenue();
+                    break;
+                case 0:
+                    System.out.println("Logging out...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while (choice != 0);
     }
 
     private static void showTrainerMenu(Scanner scanner, User user, UserService userService, WorkoutClassService workoutService) {
-        System.out.println("Trainer menu under construction.");
+
+        if (user instanceof Trainer) {
+            ((Trainer) user).printTrainerProfile();
+        }
+
+        int choice;
+        do {
+            System.out.println("\n--- Trainer Menu ---");
+            System.out.println("1. Add workout class");
+            System.out.println("2. View all workout classes");
+            System.out.println("3. Delete workout class");
+            System.out.println("0. Logout");
+            System.out.print("Choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter class ID: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter class type: ");
+                    String type = scanner.nextLine();
+                    System.out.print("Enter description: ");
+                    String desc = scanner.nextLine();
+                    workoutService.addClass(new WorkoutClass(id, type, desc, user.getId()));
+                    break;
+                case 2:
+                    workoutService.showAllClasses();
+                    break;
+                case 3:
+                    System.out.print("Enter class ID to delete: ");
+                    int deleteId = scanner.nextInt();
+                    workoutService.deleteClass(deleteId);
+                    break;
+                case 0:
+                    System.out.println("Logging out...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (choice != 0);
     }
 
-    private static void showAdminMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService, WorkoutClassService workoutService) {
-        System.out.println("Admin menu under construction.");
+    private static void showMemberMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService) {
+
+        if (user instanceof Member) {
+            ((Member) user).printMembershipSummary();
+        }
+
+        int choice;
+        do {
+            System.out.println("\n--- Member Menu ---");
+            System.out.println("1. View all workout classes");
+            System.out.println("2. Purchase membership");
+            System.out.println("0. Logout");
+            System.out.print("Choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    new WorkoutClassService().showAllClasses();
+                    break;
+                case 2:
+                    System.out.print("Enter membership ID: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter type: ");
+                    String type = scanner.nextLine();
+                    System.out.print("Enter description: ");
+                    String desc = scanner.nextLine();
+                    System.out.print("Enter cost: ");
+                    double cost = scanner.nextDouble();
+                    membershipService.purchaseMembership(new Membership(id, type, desc, cost, user.getId()));
+                    break;
+                case 0:
+                    System.out.println("Logging out...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (choice != 0);
     }
 
     private static void addNewUser(Scanner scanner, UserService userService) {
