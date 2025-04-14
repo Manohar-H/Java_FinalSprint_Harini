@@ -1,5 +1,5 @@
--- USERS TABLE
-CREATE TABLE IF NOT EXISTS users (
+-- User Table
+CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(50),
     user_password VARCHAR(255),
@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
     user_role VARCHAR(20)
 );
 
--- MEMBERSHIPS TABLE
-CREATE TABLE IF NOT EXISTS memberships (
+-- Membership Table
+CREATE TABLE memberships (
     membership_id SERIAL PRIMARY KEY,
     membership_type VARCHAR(50),
     membership_description TEXT,
@@ -18,37 +18,29 @@ CREATE TABLE IF NOT EXISTS memberships (
     member_id INT
 );
 
--- WORKOUT CLASSES TABLE
-CREATE TABLE IF NOT EXISTS workout_classes (
+-- Workout Class Table
+CREATE TABLE workout_classes (
     workoutclass_id SERIAL PRIMARY KEY,
     workoutclass_type VARCHAR(50),
     workoutclass_description TEXT,
     trainer_id INT
 );
 
--- INSERT SAMPLE USERS
+-- Sample Data
 INSERT INTO users (user_name, user_password, user_email, user_phonenumber, user_address, user_role)
 VALUES 
 ('admin1', 'adminpass', 'admin@gym.com', '1234567890', '1 Admin St', 'admin'),
 ('trainer1', 'trainerpass', 'trainer@gym.com', '9876543210', '2 Trainer Blvd', 'trainer'),
 ('member1', 'memberpass', 'member@gym.com', '5555555555', '3 Member Rd', 'member');
 
--- INSERT SAMPLE MEMBERSHIPS
+-- Sample Memberships
 INSERT INTO memberships (membership_type, membership_description, membership_cost, member_id)
 VALUES
-('Monthly', 'Access to gym floor and cardio area', 49.99, 3),
-('Yearly', 'All-inclusive VIP pass', 499.99, 3);
+('Monthly', 'Basic gym access', 49.99, 3),
+('Yearly', 'All-access VIP membership', 499.99, 3);
 
--- INSERT SAMPLE WORKOUT CLASSES
+-- Sample Workout Classes
 INSERT INTO workout_classes (workoutclass_type, workoutclass_description, trainer_id)
 VALUES
 ('Yoga', 'Morning yoga for flexibility', 2),
 ('HIIT', 'High intensity interval training', 2);
-
--- ANALYTICAL QUERY: Revenue by membership type
-SELECT 
-    membership_type, 
-    COUNT(*) AS total_purchases, 
-    SUM(membership_cost) AS total_revenue
-FROM memberships
-GROUP BY membership_type;
