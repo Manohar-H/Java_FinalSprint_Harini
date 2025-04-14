@@ -2,8 +2,7 @@
 **Course: Java Final Sprint – Winter 2025**  
 **Developer: Harini Manohar**
 
-⸻
-
+---
 ## 1️⃣ User Documentation
 
 ### Overview
@@ -69,21 +68,15 @@ mvn exec:java -Dexec.mainClass="org.keyin.GymApp"
 ## 2️⃣ Development Documentation
 
 ### Project Structure
--    src/
--    └── main/
--        └── java/
--            └── org/keyin/
--                ├── user/
--                │   └── childclasses/
--                ├── memberships/
--                ├── workoutclasses/
--                └── GymApp.java
+
+The Project follows this structure depicted below:
 
 ![Project Structure](project-structure.png)
 
 --- 
 
 ### Javadoc Examples
+
     /**
     * Handles user login using BCrypt.
     * @param username The entered username
@@ -102,11 +95,11 @@ All services and core models have full Javadoc-style comments.
 ---
 
 ### Build Instructions
-	1.	Install Java 17+
-	2.	Install Maven
-	3.	Run:
-            mvn clean install
-            mvn exec:java -Dexec.mainClass="org.keyin.GymApp"
+1.	Install Java 17+
+2.	Install Maven
+3.	Run:
+   `mvn clean install`
+   ` mvn exec:java -Dexec.mainClass="org.keyin.GymApp"`
 
 ---
 
