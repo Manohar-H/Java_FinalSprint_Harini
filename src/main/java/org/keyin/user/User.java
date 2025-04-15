@@ -47,13 +47,20 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return String.format(
+            "👤 User ID: %d\n🔑 Username: %s\n🎭 Role: %s\n📧 Email: %s\n📱 Phone: %s\n🏠 Address: %s\n",
+            id,
+            username,
+            capitalize(role),
+            email.isEmpty() ? "N/A" : email,
+            phoneNumber.isEmpty() ? "N/A" : phoneNumber,
+            address.isEmpty() ? "N/A" : address
+        );
+    }
+
+    // Helper method
+    private String capitalize(String str) {
+        if (str == null || str.isEmpty()) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 }

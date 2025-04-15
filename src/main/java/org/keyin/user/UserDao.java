@@ -12,20 +12,24 @@ import java.util.List;
 public class UserDao {
 
     public void addUser(User user) {
-        String sql = "INSERT INTO users (user_id, user_name, user_password, user_email, user_phonenumber, user_address, user_role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (user_name, user_password, user_email, user_phonenumber, user_address, user_role) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
 
-            pstmt.setInt(1, user.getId());
-            pstmt.setString(2, user.getUsername());
-            pstmt.setString(3, user.getPassword());
-            pstmt.setString(4, user.getEmail());
-            pstmt.setString(5, user.getPhoneNumber());
-            pstmt.setString(6, user.getAddress());
-            pstmt.setString(7, user.getRole());
+                pstmt.setString(1, user.getUsername());
+                pstmt.setString(2, user.getPassword());
+                pstmt.setString(3, user.getEmail());
+                pstmt.setString(4, user.getPhoneNumber());
+                pstmt.setString(5, user.getAddress());
+                pstmt.setString(6, user.getRole());
 
-            pstmt.executeUpdate();
+                pstmt.executeUpdate();
+
+                ResultSet generatedKeys = pstmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    user.setId(generatedKeys.getInt(1)); // set auto-generated ID back into the object
+                }
 
         } catch (SQLException e) {
             e.printStackTrace();

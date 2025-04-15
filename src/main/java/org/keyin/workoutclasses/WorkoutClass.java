@@ -28,11 +28,9 @@ public class WorkoutClass {
 
     @Override
     public String toString() {
-        return "WorkoutClass{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", description='" + description + '\'' +
-                ", trainerId=" + trainerId +
-                '}';
+        return String.format(
+            "🧘 Class %d: %s\n%s\n Trainer ID: %d\n",
+            this.getId(), this.getType(), this.getDescription(), this.getTrainerId()
+        );
     }
 }

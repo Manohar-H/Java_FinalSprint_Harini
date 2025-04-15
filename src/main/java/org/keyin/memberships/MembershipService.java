@@ -20,6 +20,6 @@ public class MembershipService {
 
     public void showTotalRevenue() {
         double revenue = membershipDAO.getTotalRevenue();
-        System.out.println("💰 Total revenue: $" + revenue);
+        System.out.println("💰 Harini's Gym Total Revenue: $" + revenue);
     }
 }

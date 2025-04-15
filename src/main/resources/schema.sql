@@ -1,7 +1,7 @@
 -- User Table --
 
 CREATE TABLE IF NOT EXISTS users (
-    user_id SERIAL PRIMARY KEY,
+    user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
     user_name VARCHAR(50),
     user_password VARCHAR(255),
     user_email VARCHAR(100),
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS memberships (
     membership_type VARCHAR(50),
     membership_description TEXT,
     membership_cost DECIMAL(10,2),
-    member_id INT
+    member_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
 );
 
 -- Workout Class Table --
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS workout_classes (
     workoutclass_id SERIAL PRIMARY KEY,
     workoutclass_type VARCHAR(50),
     workoutclass_description TEXT,
-    trainer_id INT
+    trainer_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
 );
 
 

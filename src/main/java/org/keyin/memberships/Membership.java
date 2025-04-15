@@ -33,12 +33,9 @@ public class Membership {
 
     @Override
     public String toString() {
-        return "Membership{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", description='" + description + '\'' +
-                ", cost=" + cost +
-                ", memberId=" + memberId +
-                '}';
+        return String.format(
+            "💳 Membership ID: %d\n🏷️ Type: %s\n📝 Description: %s\n💰 Cost: $%.2f\n🙋 Member ID: %d\n",
+            id, type, description, cost, memberId
+        );
     }
 }
