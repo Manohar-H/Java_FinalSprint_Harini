@@ -29,11 +29,12 @@ public class GymApp {
         Scanner scanner = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("=== Gym Management System ===");
-            System.out.println("1. Add a new user");
-            System.out.println("2. Login as a user");
-            System.out.println("3. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("\n==== Harini's Gym Management System ====");
+            System.out.println("\nPlease choose from the following Options:\n");
+            System.out.println(" | 1. Register a new user ");
+            System.out.println(" | 2. Login as an existing user");
+            System.out.println(" | 3. Exit the application");
+            System.out.print("\nEnter your choice to proceed: ");
 
             while (!scanner.hasNextInt()) {
                 System.out.println("Invalid input! Please enter a number.");
@@ -73,7 +74,6 @@ public class GymApp {
         try {
             User user = userService.loginUser(username, password);
             if (user != null) {
-                System.out.println("Login Successful! Welcome " + user.getUsername());
                 switch (user.getRole().toLowerCase()) {
                     case "admin":
                         showAdminMenu(scanner, user, userService, membershipService, workoutService);
@@ -106,13 +106,13 @@ public class GymApp {
 
         int choice;
         do {
-            System.out.println("\n--- Admin Menu ---");
-            System.out.println("1. View all users");
-            System.out.println("2. Delete user");
-            System.out.println("3. View all memberships");
-            System.out.println("4. View total revenue");
-            System.out.println("0. Logout");
-            System.out.print("Choice: ");
+            System.out.println("\n=== Admin Menu ===");
+            System.out.println(" | 1. View all users");
+            System.out.println(" | 2. Delete user");
+            System.out.println(" | 3. View all memberships");
+            System.out.println(" | 4. View total revenue");
+            System.out.println(" | 0. Logout");
+            System.out.print("\nYour Choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -150,12 +150,12 @@ public class GymApp {
 
         int choice;
         do {
-            System.out.println("\n--- Trainer Menu ---");
-            System.out.println("1. Add workout class");
-            System.out.println("2. View all workout classes");
-            System.out.println("3. Delete workout class");
-            System.out.println("0. Logout");
-            System.out.print("Choice: ");
+            System.out.println("\n=== Trainer Menu ===");
+            System.out.println(" | 1. Add workout class");
+            System.out.println(" | 2. View all workout classes");
+            System.out.println(" | 3. Delete workout class");
+            System.out.println(" | 0. Logout");
+            System.out.print("\n Your Choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -197,11 +197,11 @@ public class GymApp {
 
         int choice;
         do {
-            System.out.println("\n--- Member Menu ---");
-            System.out.println("1. View all workout classes");
-            System.out.println("2. Purchase membership");
-            System.out.println("0. Logout");
-            System.out.print("Choice: ");
+            System.out.println("\n=== Member Menu ===");
+            System.out.println(" | 1. View all workout classes");
+            System.out.println(" | 2. Purchase membership");
+            System.out.println(" | 0. Logout");
+            System.out.print("\nYour Choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
 

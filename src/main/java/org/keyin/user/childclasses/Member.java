@@ -19,7 +19,9 @@ public class Member extends User {
     }
 
     public void printMembershipSummary() {
-        System.out.println("🧾 Membership Summary for " + getUsername());
+        System.out.println("\nLogin Success.");
+        System.out.println("\n🧾 Membership Summary for " + getUsername());
         System.out.println("Total Spent on Memberships: $" + totalMembershipCost);
+        System.out.println("\nChoose from the following options:");
     }
 }

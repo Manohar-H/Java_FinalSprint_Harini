@@ -22,7 +22,8 @@ public class Trainer extends User {
     }
 
     public void printTrainerProfile() {
-        System.out.println("👨‍🏫 Trainer: " + getUsername());
-        System.out.println("Assigned Class IDs: " + assignedClassIds);
+        System.out.println("\nLogin Success.");
+        System.out.println("Trainer: Hello, " + getUsername());
+        System.out.println("\nChoose from the following options:");
     }
 }

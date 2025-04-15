@@ -25,7 +25,6 @@ public class UserService {
             }
 
             if (BCrypt.checkpw(password.trim(), user.getPassword().trim())) {
-                System.out.println("✅ Login successful! Welcome, " + user.getUsername());
                 return user;
             } else {
                 System.out.println("❌ Invalid password.");

@@ -9,7 +9,7 @@ public class Admin extends User {
     }
 
     public void printAdminDashboard() {
-        System.out.println("🛡️ Admin Dashboard Accessed");
-        System.out.println("Welcome, " + getUsername());
+        System.out.println("\n🛡️ Admin Dashboard Accessed 🛡️");
+        System.out.println("\nChoose from the following options:");
     }
 }
