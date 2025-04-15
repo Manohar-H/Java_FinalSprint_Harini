@@ -14,16 +14,22 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class GymApp {
+
+    // ================= Main Menu =================
+
     public static void main(String[] args) throws SQLException {
         UserService userService = new UserService();
         MembershipService membershipService = new MembershipService();
         WorkoutClassService workoutService = new WorkoutClassService();
 
+        if (userService.loginUser("admin1", "adminpass") == null) {
+            userService.insertAdminHardcoded();
+        }
+
         Scanner scanner = new Scanner(System.in);
         int choice;
-
         do {
-            System.out.println("\n=== Gym Management System ===");
+            System.out.println("=== Gym Management System ===");
             System.out.println("1. Add a new user");
             System.out.println("2. Login as a user");
             System.out.println("3. Exit");
@@ -35,7 +41,7 @@ public class GymApp {
             }
 
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
@@ -54,6 +60,9 @@ public class GymApp {
 
         scanner.close();
     }
+
+
+    // ================= User Login =================
 
     private static void logInAsUser(Scanner scanner, UserService userService, MembershipService membershipService, WorkoutClassService workoutService) {
         System.out.print("Enter username: ");
@@ -87,8 +96,10 @@ public class GymApp {
         }
     }
 
+
+    // ================= Admin Menu ====================
+
     private static void showAdminMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService, WorkoutClassService workoutService) {
-        
         if (user instanceof Admin) {
             ((Admin) user).printAdminDashboard();
         }
@@ -103,7 +114,7 @@ public class GymApp {
             System.out.println("0. Logout");
             System.out.print("Choice: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -129,8 +140,10 @@ public class GymApp {
         } while (choice != 0);
     }
 
+
+    // ================= Trainer Menu ====================
+
     private static void showTrainerMenu(Scanner scanner, User user, UserService userService, WorkoutClassService workoutService) {
-        
         if (user instanceof Trainer) {
             ((Trainer) user).printTrainerProfile();
         }
@@ -174,8 +187,10 @@ public class GymApp {
         } while (choice != 0);
     }
 
-    private static void showMemberMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService) {
 
+    // ================= Member Menu ====================
+
+    private static void showMemberMenu(Scanner scanner, User user, UserService userService, MembershipService membershipService) {
         if (user instanceof Member) {
             ((Member) user).printMembershipSummary();
         }
@@ -215,16 +230,28 @@ public class GymApp {
         } while (choice != 0);
     }
 
+
+    // ================= User Registration =================
+
     private static void addNewUser(Scanner scanner, UserService userService) {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
-        System.out.print("Enter role (Admin/Trainer/Member): ");
-        String role = scanner.nextLine();
+
+        String role;
+        while (true) {
+            System.out.print("Enter role (admin / trainer / member): ");
+            role = scanner.nextLine().trim().toLowerCase();
+            if (role.equals("admin") || role.equals("trainer") || role.equals("member")) {
+                break;
+            } else {
+                System.out.println("❌ Invalid role! Please enter 'admin', 'trainer', or 'member'.");
+            }
+        }
 
         User user;
-        switch (role.toLowerCase()) {
+        switch (role) {
             case "admin":
                 user = new Admin(0, username, password, "", "", "");
                 break;
@@ -235,11 +262,11 @@ public class GymApp {
                 user = new Member(0, username, password, "", "", "");
                 break;
             default:
-                System.out.println("Invalid role! User not created.");
+                System.out.println("Something went wrong. User not created.");
                 return;
         }
 
         userService.registerUser(user);
-        System.out.println("User added successfully!");
+        System.out.println("✅ User added successfully!");
     }
 }

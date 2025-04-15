@@ -1,6 +1,7 @@
-# Final Project Documentation – Gym Management System
+# Project Documentation – Harini's Gym Management System
 **Course: Java Final Sprint – Winter 2025**  
 **Developer: Harini Manohar**
+**Dates: March 30 - April 15, 2025**
 
 ---
 ## 1️⃣ User Documentation
@@ -58,10 +59,13 @@ and how `WorkoutClass`, `Membership` relate to users.
 
 ### How to Run the App
 
-git clone https://github.com/Manohar-H/Java_FinalSprint_Harini.git
-cd Java_FinalSprint_Harini
-mvn clean install
-mvn exec:java -Dexec.mainClass="org.keyin.GymApp"
+Run the following commands in your VS Code Terminal (I used VS Code).
+*This will clone the repository where the project is in and run the Maven application*
+
+`git clone https://github.com/Manohar-H/Java_FinalSprint_Harini.git`
+`cd Java_FinalSprint_Harini`
+`mvn clean install`
+`mvn exec:java -Dexec.mainClass="org.keyin.GymApp"`
 
 ⸻
 
@@ -69,7 +73,7 @@ mvn exec:java -Dexec.mainClass="org.keyin.GymApp"
 
 ### Project Structure
 
-The Project follows this structure depicted below:
+This Project follows the structure outlined below:
 
 ![Project Structure](project-structure.png)
 
@@ -95,11 +99,13 @@ All services and core models have full Javadoc-style comments.
 ---
 
 ### Build Instructions
-1.	Install Java 17+
-2.	Install Maven
-3.	Run:
-   `mvn clean install`
-   ` mvn exec:java -Dexec.mainClass="org.keyin.GymApp"`
+
+	1.	Install Java 17+
+	2.	Install Maven
+	3.	Run:
+`mvn clean install`
+`mvn exec:java -Dexec.mainClass="org.keyin.GymApp"`
+
 
 ---
 
@@ -111,16 +117,22 @@ All services and core models have full Javadoc-style comments.
 ---    
 
 ### Database Setup
-	•	See schema.sql to create tables
-	•	See scripts.sql for insert statements & queries
 
-*Run these in a PostgreSQL environment.*
+To setup the database, you will need the following:
+    •   Database URL = `jdbc:postgresql://localhost:5432/gym_system`
+    •   Database User ID = `postgres`
+    •   Database Password = `Harini.02`
 
-⸻
+`See [The Project Schema](schema.sql) to create tables`
+`See [The Scripts](scripts.sql) for insert statements & queries`
+
+*These are run in a PostgreSQL environment.*
+
+---
 
 ## 3️⃣ Individual Report
 
-###  My Contributions
+###  My Contributions - Solo Project 
 	•	Built all classes and services from scratch
 	•	Designed the database schema and logic
 	•	Created multi-role UI with branching logic
@@ -133,6 +145,6 @@ All services and core models have full Javadoc-style comments.
 	•	Merging branches with conflicts
 	•	Managing package structure and Java classpath in VS Code
 
-⸻
+---
 
-Thank you for reviewing this project!
+Thank you for reviewing this project. Hope you have a great day.

@@ -1,7 +1,7 @@
 package org.keyin.user;
 
 /**
- * Parent class for all users in the Gym Management System.
+ * Parent class for all users in Harini's Gym Management System.
  * Roles: Admin, Trainer, Member
  */
 public abstract class User {
